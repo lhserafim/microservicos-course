@@ -19,3 +19,12 @@ Fase 1: Comunicação simples, Feign, Ribbon
             e chamá-la através da @Value("${hr-worker.host}"), fazendo a interpolação da chave/valor do .properties
         2.4.1.  Para chamar a API hr-worker, precisei criar a classe Worker e chamar o método restTemplate.getForObject()
         2.4.2.  IMPORTANTE! Isto ainda não é microserviço. Como estamos passando a URL do host de forma estática não é um MS.
+3.  Vamos implementar um componente do spring cloud chamado de feign. O feign é uma forma alternativa de comunicar um projeto
+    com o outro e ele está integrado com as outras ferramentas do spring cloud.
+    Vantagens do feign versos RestTemplate é que deixa o código mais limpo, além de já estar integrado com o spring cloud
+    3.1.    IMPORTANTE! Além da dependency, adicionar o dependencyManagement, conforme arquivo pom.xml
+    3.2.    Para que exista uma configuração básica do feign e para que ele fique disponível para injetar, vamos precisar adicionar
+            uma anotação na classe HrPayrollApplication que é @EnableFeignClients
+    3.3.    Criar uma Interface FeignClient "WorkerFeignClient", fazer as anotações e copiar as assinaturas dos métodos que
+            eu quero acessar do outro projeto (api)
+    3.4.    Implementar o feign ao invés do restTemplate no PaymentService.
