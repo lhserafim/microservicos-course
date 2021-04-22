@@ -1,0 +1,13 @@
+GITHUB:
+
+Fase 1: Comunicação simples, Feign, Ribbon
+1.  Fazer a configuração padrão de implementação de entidades e repositórios JPA
+    1.1.    Na implementação da entidade o prof. orientou a colocarmos que a entidade é serializable. Isto permite que o
+            objeto se transfome em bytes e possa trafegar pela rede e salvar em arquivos, por exemplo.
+    1.2.    IMPORTANTE! A informação de application.properties spring.application.name=hr-worker é MUITO RELEVANTE para os
+            microserviços
+    1.3.    LEGAL! O padrão java é chamado de CamelCase e o padrão de banco de dados de SNAKE_CASE
+    1.4.    Neste projeto foi usado o nome RESOURCE ao invés de CONTROLLER
+    1.5.    Não foi necessário criar um construtor para fazer a injeção de dependência do repository na resource
+    1.6.    O ResponseEntity encapsula a resposta em uma HTTP
+
