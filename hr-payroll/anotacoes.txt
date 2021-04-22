@@ -1,0 +1,9 @@
+GITHUB: https://github.com/acenelio/ms-course
+
+Fase 1: Comunicação simples, Feign, Ribbon
+1.  Vamos implementar a entidade Payment. Esta entidade não existirá no BD será apenas em memória
+    1.1.    Fazer a criação da entidade Payment
+    1.2.    Criar um serviço para instanciar a entidade Payment. Por enquanto estou retornado um objeto mockado
+    1.3.    Criar a resource e endpoints
+        1.3.1.  Exemplo de rota com 2 parâmetros: @GetMapping(value = "/{workerId}/days/{days}"
+    1.4.    Atualizar o arquivo application.properties com o nome e porta

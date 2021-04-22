@@ -1,4 +1,4 @@
-GITHUB:
+GITHUB: https://github.com/acenelio/ms-course
 
 Fase 1: Comunicação simples, Feign, Ribbon
 1.  Fazer a configuração padrão de implementação de entidades e repositórios JPA
