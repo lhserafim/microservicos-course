@@ -7,3 +7,15 @@ Fase 1: Comunicação simples, Feign, Ribbon
     1.3.    Criar a resource e endpoints
         1.3.1.  Exemplo de rota com 2 parâmetros: @GetMapping(value = "/{workerId}/days/{days}"
     1.4.    Atualizar o arquivo application.properties com o nome e porta
+2.  Para fazer um projeto comunicar com o outro, POR ENQUANTO utilizaremos um RestTemplate. Que é uma maneira clássica
+    de fazer a comunicação entre webservices
+    2.1.    A nossa necessidade é retirar o código mockado dentro da PaymentService e fazer uma chamada REST para a API
+            hr-worker
+    2.2.    Para podermos utilizar o RestTemplate, primeiramente teremos que criar um Bean. Este Bean será criado dentro
+            de uma classe de configuração AppConfig. Lembrando que o bean respeita o principio de Singleton
+        2.2.1.  Anotar a classe com @Configuration e fazer a implementação do método que cria uma instancia de RestTemplate
+    2.3.    Na PaymentService, fazer a injeção do meu Bean (RestTemplate) para fazer a chamada do meu webservice de hr-worker
+    2.4.    Criar uma propriedade em application.properties para passar a base da URL do meu MS. Ex.: hr-worker.host=http://localhost:8001
+            e chamá-la através da @Value("${hr-worker.host}"), fazendo a interpolação da chave/valor do .properties
+        2.4.1.  Para chamar a API hr-worker, precisei criar a classe Worker e chamar o método restTemplate.getForObject()
+        2.4.2.  IMPORTANTE! Isto ainda não é microserviço. Como estamos passando a URL do host de forma estática não é um MS.
