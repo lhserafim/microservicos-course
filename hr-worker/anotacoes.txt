@@ -1,6 +1,7 @@
 GITHUB: https://github.com/acenelio/ms-course
 
 Fase 1: Comunicação simples, Feign, Ribbon
+
 1.  Fazer a configuração padrão de implementação de entidades e repositórios JPA
     1.1.    Na implementação da entidade o prof. orientou a colocarmos que a entidade é serializable. Isto permite que o
             objeto se transfome em bytes e possa trafegar pela rede e salvar em arquivos, por exemplo.
@@ -11,3 +12,14 @@ Fase 1: Comunicação simples, Feign, Ribbon
     1.5.    Não foi necessário criar um construtor para fazer a injeção de dependência do repository na resource
     1.6.    O ResponseEntity encapsula a resposta em uma HTTP
 
+Fase 2: Eureka, Hystrix, Zuul
+
+2.  Configurar os MS hr-worker como cliente do Eureka
+    2.1.    Adicionar a dependencia do Eureka Client no pom.xml.
+        2.1.1.  IMPORTANTE! Necessário adicionar o dependencyManagement ao pom.xml
+    2.2.    Adicionar a localização do servidor Eureka ao application.properties para que o meu MS hr-worker possa se
+            registrar nele. Ex.: eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+    2.3.    Na classe Application, colocar a anotação @EnableEurekaClient
+    2.4.    Com isto, está implementada a descoberta dos MS pelo nome. Quando o meu hr-payroll precisou chamar o MS hr-worker
+            ele localizou utilizando o nome que está na anotação @FeignClient() e ai o Eureka tratou de entregar uma instancia
+            de Worker para o feignClient fazer uma chamada do webservice

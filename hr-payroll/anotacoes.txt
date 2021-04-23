@@ -1,6 +1,7 @@
 GITHUB: https://github.com/acenelio/ms-course
 
 Fase 1: Comunicação simples, Feign, Ribbon
+
 1.  Vamos implementar a entidade Payment. Esta entidade não existirá no BD será apenas em memória
     1.1.    Fazer a criação da entidade Payment
     1.2.    Criar um serviço para instanciar a entidade Payment. Por enquanto estou retornado um objeto mockado
@@ -49,6 +50,15 @@ Fase 1: Comunicação simples, Feign, Ribbon
         4.7.3.  Add VM Options e digitar: -Dserver.port=8001
         4.7.4.  Duplicar a application e repetir as configurações alterando a porta
 
+ Fase 2: Eureka, Hystrix, Zuul
+
+ 5.  Configurar os MS hr-worker como cliente do Eureka
+     5.1.    Adicionar a dependencia do Eureka Client no pom.xml.
+         5.1.1.  IMPORTANTE! Necessário adicionar o dependencyManagement ao pom.xml
+     5.2.    Adicionar a localização do servidor Eureka ao application.properties para que o meu MS hr-worker possa se
+             registrar nele. Ex.: eureka.client.service-url.defaultZone=http://localhost:8761/eureka
+     5.3.    Na classe Application, colocar a anotação @EnableEurekaClient e remover a @RibbonClient, pois o Eureka já
+             tem o balanceamento de carga implementado
 
 
 
