@@ -28,3 +28,44 @@ Fase 1: Comunicação simples, Feign, Ribbon
     3.3.    Criar uma Interface FeignClient "WorkerFeignClient", fazer as anotações e copiar as assinaturas dos métodos que
             eu quero acessar do outro projeto (api)
     3.4.    Implementar o feign ao invés do restTemplate no PaymentService.
+4.  Balanceamento de carga com Ribbon
+    4.1.    Adicionar a dependência do ribbon ao pom.xml
+    4.2.    IMPORTANTE o nosso projeto hr-payroll vai ser um CLIENTE RIBBON, ele fará a chamada do hr-worker, que terá mais
+            de 1 instância levantada e esta chamada será feita através do balanceamento de carga
+    4.3.    Para configurar o projeto hr-payroll como um cliente ribbon, ir HrPayrollApplication e adicionar a anotação
+            @RibbonClient(name = "hr-worker")
+    4.4.    Em application.properties fazer a definição da lista de servidores que terão instancias de hr-worker
+            Ex.: hr-worker.ribbon.listOfServers=localohost:8001,localhost:8002
+        4.4.1.  IMPORTANTE! Por enquanto esta definição está sendo feita de forma estática!
+    4.5.    Remover o paramêtro url de @FeignClient em WorkerFeignClient, pois agora esta informação vem das propriedades
+    4.6.    Fazer adaptações para poder fazer o teste em hr-worker
+        4.6.1.  Em WorkerResource, adicionar Logger (de slf4j) e Enviroment (de springframework)
+        4.6.2.  Dentro da minha API recuperar a porta do enviroment e logar no console
+                Ex.: logger.info("PORT = " + environment.getProperty("local.server.port"));
+            4.6.2.1.    Esta implementação é apenas para testes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
