@@ -43,6 +43,11 @@ Fase 1: Comunicação simples, Feign, Ribbon
         4.6.2.  Dentro da minha API recuperar a porta do enviroment e logar no console
                 Ex.: logger.info("PORT = " + environment.getProperty("local.server.port"));
             4.6.2.1.    Esta implementação é apenas para testes
+    4.7.    Configurando o IntelliJ para permitir 2 instâncias em portas diferentes
+        4.7.1.  Ir em Edit Configurations (do run)
+        4.7.2.  Modify Options -> Allow Multiple Instances
+        4.7.3.  Add VM Options e digitar: -Dserver.port=8001
+        4.7.4.  Duplicar a application e repetir as configurações alterando a porta
 
 
 
