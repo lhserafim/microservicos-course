@@ -23,3 +23,8 @@ Fase 2: Eureka, Hystrix, Zuul
     2.4.    Com isto, está implementada a descoberta dos MS pelo nome. Quando o meu hr-payroll precisou chamar o MS hr-worker
             ele localizou utilizando o nome que está na anotação @FeignClient() e ai o Eureka tratou de entregar uma instancia
             de Worker para o feignClient fazer uma chamada do webservice
+3. Deixando o MS como random (pseudo-random na verdade!)
+    3.1.    Adicionar ao arquivo pom.xml o seguinte:
+            Ex.:
+            server.port=${PORT:0}
+            eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
