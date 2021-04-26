@@ -1,0 +1,32 @@
+GITHUB: https://github.com/acenelio/ms-course
+
+Fase 3: Configuração centralizada
+
+1.  Configurando o Config Server. A configuração centralizada permite que os nossos MS busquem algumas configurações que
+    estão centralizadas e salvas em um repositório git.
+    1.1.    Criar o projeto do Zuul adicionando as dependências de Config Server do Spring Cloud
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
