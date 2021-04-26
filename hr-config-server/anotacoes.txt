@@ -5,6 +5,20 @@ Fase 3: Configuração centralizada
 1.  Configurando o Config Server. A configuração centralizada permite que os nossos MS busquem algumas configurações que
     estão centralizadas e salvas em um repositório git.
     1.1.    Criar o projeto do Zuul adicionando as dependências de Config Server do Spring Cloud
+2.  Configurar projeto hr-config-server. Quando um microsserviço é levantado, antes de se registrar no Eureka, ele busca
+    as configurações no repositório central de configurações.
+    2.1.    Criar um repositório (neste momento público) padrão no github.
+    2.2.    Adicionar 2 arquivos de configuração, conforme https://github.com/lhserafim/ms-course-configs:
+            Ex.:
+            hr-worker.properties
+            test.config=My config value default profile
+            -------------------------------------------
+            hr-worker-test.properties
+            test.config=My config value test profile
+    2.3.    No meu hr-config-server, em Application, colocar a anotação @EnableConfigServer
+    2.4.    No arquivo application.properties configurar o nome do aplicativo, a porta (por padrão 8888) e o endereço do
+            repositório git
+
 
 
 
