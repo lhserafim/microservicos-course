@@ -23,8 +23,19 @@ Fase 2: Eureka, Hystrix, Zuul
     2.4.    Com isto, está implementada a descoberta dos MS pelo nome. Quando o meu hr-payroll precisou chamar o MS hr-worker
             ele localizou utilizando o nome que está na anotação @FeignClient() e ai o Eureka tratou de entregar uma instancia
             de Worker para o feignClient fazer uma chamada do webservice
-3. Deixando o MS como random (pseudo-random na verdade!)
+3.  Deixando o MS como random (pseudo-random na verdade!)
     3.1.    Adicionar ao arquivo pom.xml o seguinte:
             Ex.:
             server.port=${PORT:0}
             eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+Fase 3: Configuração centralizada
+
+4.  Configurando o MS hr-worker como um cliente do servidor de configurações. Antes de mais nada é necessário deixar o
+    servidor de configurações devidamente configurado, ou seja, enxergando e lendo o repositório aonde os arquivos de
+    configuração foram criados
+    4.1.    No cliente, adicionar a dependência do cliente do config server
+    4.2.    Em seguida, criar o arquivo bootstrap.properties, onde diremos o nome do MS, o endereço do servidor de
+            configuração e definir qual profile está ativo
+    4.3.    Para testar, foi criado um @Value na resource, interpolando o valor do arquivo de propriedade e um endpoint
+            foi criado para imprimir no console
