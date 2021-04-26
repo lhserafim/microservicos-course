@@ -62,7 +62,7 @@ Fase 2: Eureka, Hystrix, Zuul
 6.  HYSTRIX é uma funcionalidade que permite que nosso projeto de MS tem tolerância a falhas. Através de sua configuração
     podemos tratar algumas exceções como timeout, ou indisponibilidade e dar uma resposta alternativa e assim evitar problemas em cascata. É o
     princípio de circuit break
-    6.1.    Primeiramente é necessário adicionar a dependência ao pom.xml
+    6.1.    Primeiramente é necessário adicionar a dependencies ao pom.xml
     6.2.    Em seguida, no Application, adicionar a anotação @EnableCircuitBreaker a nível de classe
     6.3.    Na Controller/Resource adicionar um "caminho alternativo" para a falha da minha chamada do MS
         6.3.1.  Em cima do método desejado, colocar a anotação apontando para o método alteranativo.

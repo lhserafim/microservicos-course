@@ -1,0 +1,41 @@
+GITHUB: https://github.com/acenelio/ms-course
+
+Fase 2: Eureka, Hystrix, Zuul
+
+1.  Configurando o gateway Zuul
+    1.1.    Criar o projeto do Zuul adicionando as dependências de Web, Eureka Client e Zuul
+    1.2.    Adicionar as anotações no Application: @EnableEurekaClient e @EnableZuulProxy
+    1.3.    Configurar a conexão com o Eureka no arquivo application.properties definindo: O nome da aplicação,
+            a porta, o endereço do servidor eureka, e as rotas dos microserviços.
+            Vide arquivo para exemplo.
+        1.3.1.  As definições das rotas: service-id e path são essenciais para que eu possa acessar o endpoint do MS
+                utilizando o endereço do Zuul.
+                Ex.: http://localhost:8765/hr-worker/workers
+                     http://localhost:8765/hr-payroll/payments/1/days/10
+    1.4.    Com estas implementações, estamos colocando os nossos MS dentro do gateway e assim podemos impedir o acesso
+            direto as API's
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
