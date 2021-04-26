@@ -39,3 +39,12 @@ Fase 3: Configuração centralizada
             configuração e definir qual profile está ativo
     4.3.    Para testar, foi criado um @Value na resource, interpolando o valor do arquivo de propriedade e um endpoint
             foi criado para imprimir no console
+5.  Actuator para atualizar configurações em runtime
+    5.1.    Adicionar a dependência do actuator em pom.xml
+    5.2.    No resource/controller, adicionar a anotação @RefreshScope
+        5.2.1.  IMPORTANTE! Colocar @RefreshScope em toda classe que possua algum acesso às configurações
+    5.3.    No arquivo bootstrap.properties, adicionar a configuração: management.endpoints.web.exposure.include=*
+    5.4.    Para que o MS veja as configurações atualizadas no repositório é necessário que seja feita uma chamada na
+            (POST) url: http://localhost:8765/hr-worker/actuator/refresh
+        5.4.1.  É esta chamda que vai fazer o refresh no sistema e permitir que o MS leia o arquivo de configuração
+                autalizado
