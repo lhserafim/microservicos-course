@@ -18,6 +18,13 @@ Fase 3: Configuração centralizada
     2.3.    No meu hr-config-server, em Application, colocar a anotação @EnableConfigServer
     2.4.    No arquivo application.properties configurar o nome do aplicativo, a porta (por padrão 8888) e o endereço do
             repositório git
+3.  Transformar o repositório git em privativo
+    3.1.    Fazer a mudança da visibilidade do repositorio no git
+    3.2.    No arquivo application.properties, adicionar as configurações de usuário e senha para acessar o repositório
+            Ex.:
+            # O usuário e senha ficam salvos em variáveis de ambiente
+            spring.cloud.config.server.git.username=${GITHUB_USER}
+            spring.cloud.config.server.git.password=${GITHUB_PASS}
 
 
 

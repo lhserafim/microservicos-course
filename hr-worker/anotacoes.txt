@@ -47,4 +47,4 @@ Fase 3: Configuração centralizada
     5.4.    Para que o MS veja as configurações atualizadas no repositório é necessário que seja feita uma chamada na
             (POST) url: http://localhost:8765/hr-worker/actuator/refresh
         5.4.1.  É esta chamda que vai fazer o refresh no sistema e permitir que o MS leia o arquivo de configuração
-                autalizado
+                atualizado
