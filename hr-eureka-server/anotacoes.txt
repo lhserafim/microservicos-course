@@ -6,6 +6,7 @@ Fase 2: Eureka, Hystrix, Zuul
     1.1.    Adicionando ao pom.xml a dependência glassfish
     1.2.    Adicionar a anotação @EnableEurekaServer ao HrEurekaServerApplication
     1.3.    Configurar o arquivo application.properties, definindo as propriedades como name, port, etc.
+            E dizendo que ele é SERVER apenas, conforme está no arquivo application.properties
         1.3.1.  IMPORTANTE! A porta padrão para um servidor Eureka é 8761
     1.4.    Para acessar o servidor, no navegador digitar: http://localhost:8761
         1.4.1   Isto abrirá o dashboard com diversas configurações do Eureka

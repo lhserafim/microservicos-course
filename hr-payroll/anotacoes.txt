@@ -50,17 +50,30 @@ Fase 1: Comunicação simples, Feign, Ribbon
         4.7.3.  Add VM Options e digitar: -Dserver.port=8001
         4.7.4.  Duplicar a application e repetir as configurações alterando a porta
 
- Fase 2: Eureka, Hystrix, Zuul
+Fase 2: Eureka, Hystrix, Zuul
 
- 5.  Configurar os MS hr-worker como cliente do Eureka
-     5.1.    Adicionar a dependencia do Eureka Client no pom.xml.
-         5.1.1.  IMPORTANTE! Necessário adicionar o dependencyManagement ao pom.xml
-     5.2.    Adicionar a localização do servidor Eureka ao application.properties para que o meu MS hr-worker possa se
+5.  Configurar os MS hr-worker como cliente do Eureka
+    5.1.    Adicionar a dependencia do Eureka Client no pom.xml.
+        5.1.1.  IMPORTANTE! Necessário adicionar o dependencyManagement ao pom.xml
+    5.2.    Adicionar a localização do servidor Eureka ao application.properties para que o meu MS hr-worker possa se
              registrar nele. Ex.: eureka.client.service-url.defaultZone=http://localhost:8761/eureka
-     5.3.    Na classe Application, colocar a anotação @EnableEurekaClient e remover a @RibbonClient, pois o Eureka já
+    5.3.    Na classe Application, colocar a anotação @EnableEurekaClient e remover a @RibbonClient, pois o Eureka já
              tem o balanceamento de carga implementado
-
-
+6.  HYSTRIX é uma funcionalidade que permite que nosso projeto de MS tem tolerância a falhas. Através de sua configuração
+    podemos tratar algumas exceções como timeout, ou indisponibilidade e dar uma resposta alternativa e assim evitar problemas em cascata. É o
+    princípio de circuit break
+    6.1.    Primeiramente é necessário adicionar a dependência ao pom.xml
+    6.2.    Em seguida, no Application, adicionar a anotação @EnableCircuitBreaker a nível de classe
+    6.3.    Na Controller/Resource adicionar um "caminho alternativo" para a falha da minha chamada do MS
+        6.3.1.  Em cima do método desejado, colocar a anotação apontando para o método alteranativo.
+                Ex.: @HystrixCommand(fallbackMethod = "getPaymentAlternative")
+        6.3.2.  Criar o método alternativo (getPaymentAlternative) e implementar a solução de contorno para a possível falha
+    6.4.    Caso seja interessante e necessário, posso definir no arquivo application.properties algumas propriedades como
+            o timeout do hystrix e do ribbon
+            Ex.:
+            hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds=60000
+            ribbon.ConnectTimeout=10000
+            ribbon.ReadTimeout=20000
 
 
 

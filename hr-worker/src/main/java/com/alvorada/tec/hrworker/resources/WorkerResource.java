@@ -37,6 +37,17 @@ public class WorkerResource {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Worker> findById(@PathVariable Long id) {
+
+        // CÓDIGO P/ SIMULAR UM TIMEOUT
+        // por padrão o balanceamento de carga do ribbon tem 1s
+ 		/*
+        try {
+ 			Thread.sleep(3000L);
+ 		} catch (InterruptedException e) {
+ 			e.printStackTrace();
+ 		}
+ 		*/
+
         // Recuperando a porta do enviroment e logando no console
         logger.info("PORT = " + environment.getProperty("local.server.port"));
 
