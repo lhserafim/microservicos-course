@@ -1,0 +1,10 @@
+GITHUB: https://github.com/acenelio/ms-course
+
+Fase 3: Configuração centralizada
+
+1.  Criar o MS hr-user com as dependências JPA, Eureka Client, Web, H2
+2.  Configurar o MS
+    2.1.    Colocar a anotação de cliente do eureka na application @EnableEurekaClient
+    2.2.    Configurar o arquivo application.properties, definindo nome do MS, Porta aleatória, end. do servidor eureka,
+            configuração do H2
+
