@@ -7,4 +7,13 @@ Fase 3: Configuração centralizada
     2.1.    Colocar a anotação de cliente do eureka na application @EnableEurekaClient
     2.2.    Configurar o arquivo application.properties, definindo nome do MS, Porta aleatória, end. do servidor eureka,
             configuração do H2
-
+3.  Criar a entidade User, no padrão JPA
+    3.1.    IMPORTANTE! A associção entre User e Role é ManyToMany e por isso preciso:
+        3.1.1.  Utilizar o Set<> ao invés de List<>
+        3.1.2.  Criar a tabela intermediaria que fará a associação entre User e Role
+            3.1.2.1.    Esta tabela é criada dinamicamente pela anotação @ManyToMany + @JoinTable
+                        Ex.:
+                        @JoinTable(name = "tb_user_role", // nome da tabela
+                            joinColumns = @JoinColumn(name = "user_id"), // nome da coluna que é FK da tabela TB_USER
+                            inverseJoinColumns = @JoinColumn(name = "role_id") )// nome da coluna que é FK da tabela TB_ROLE
+            3.1.2.2.    Colocar o fetch como EAGER
