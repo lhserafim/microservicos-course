@@ -17,3 +17,4 @@ Fase 3: Configuração centralizada
                             joinColumns = @JoinColumn(name = "user_id"), // nome da coluna que é FK da tabela TB_USER
                             inverseJoinColumns = @JoinColumn(name = "role_id") )// nome da coluna que é FK da tabela TB_ROLE
             3.1.2.2.    Colocar o fetch como EAGER
+4.  Criar o arquivo data.sql e fazer a carga (seeding) dos usuários e privilégios
