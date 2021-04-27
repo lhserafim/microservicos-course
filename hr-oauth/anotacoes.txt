@@ -5,4 +5,4 @@ Fase 4: autenticação e autorização
 1.  Criar o MS hr-user com as dependências Eureka Client, Web
 2.  Configurar o MS
     2.1.    Colocar a anotação de cliente do eureka na application @EnableEurekaClient
-    2.2.    
+    2.2.    Configurar o arquivo application.properties, definindo nome do MS, Porta aleatória, end. do servidor eureka
