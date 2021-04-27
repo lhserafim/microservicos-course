@@ -1,6 +1,6 @@
 GITHUB: https://github.com/acenelio/ms-course
 
-Fase 3: Configuração centralizada
+Fase 4: autenticação e autorização
 
 1.  Criar o MS hr-user com as dependências JPA, Eureka Client, Web, H2
 2.  Configurar o MS
