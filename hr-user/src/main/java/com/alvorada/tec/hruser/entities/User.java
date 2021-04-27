@@ -17,7 +17,8 @@ public class User implements Serializable {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Column(name = "email")
+
+    @Column(name = "email", unique = true) // subindo uma UK
     private String email;
     @Column(name = "password")
     private String password;

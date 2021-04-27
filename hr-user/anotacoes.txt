@@ -18,3 +18,11 @@ Fase 3: Configuração centralizada
                             inverseJoinColumns = @JoinColumn(name = "role_id") )// nome da coluna que é FK da tabela TB_ROLE
             3.1.2.2.    Colocar o fetch como EAGER
 4.  Criar o arquivo data.sql e fazer a carga (seeding) dos usuários e privilégios
+5.  Criar o repository UserRepository com o query method
+6.  Criar o resource, com os endpoints p/ findById e findByEmail
+    6.1.    DICA! Note que estou usando o @RequestParam, pois ele é opcional na URL (e não aparece na URL)
+7.  Configurar o Zuul para rodar o meu projeto MS hr-user através do Zuul
+    7.1.    Abrir o projeto do Zuul e configurar a rota p/ hr-user
+            Ex.:
+            zuul.routes.user.service-id=hr-user
+            zuul.routes.user.path=/hr-user/**
