@@ -14,13 +14,15 @@ Fase 2: Eureka, Hystrix, Zuul
                      http://localhost:8765/hr-payroll/payments/1/days/10
     1.4.    Com estas implementações, estamos colocando os nossos MS dentro do gateway e assim podemos impedir o acesso
             direto as API's
-2.  Zuul timeout.
+2.  Zuul timeout
     2.1.    Mesmo o timeout de Hystrix e Ribbon configurado em um microsserviço, se o Zuul não tiver seu timeout
             configurado, para ele será um problema de timeout. Então precisamos configurar o timeout no Zuul.
         2.1.1.  Configurar no arquivo application.properties o timeout do Zuul. As configurações são as mesmas que foram
                 definidas no MS hr-payroll
     2.2.    Se o timeout estiver configurado somente em Zuul, o Hystrix vai chamar o método alternativo no microsserviço
             específico. Ou seja, as configurações de timeout precisam estar tanto no Zuul quanto nos MS
+3.  Implementando o FeignClient para hr-oauth acessar hr-user
+    3.1.    No gateway zuul, em application.properties, definir as rotas para que seja possível acessar o MS através do Zuul
 
 
 

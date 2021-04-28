@@ -6,3 +6,37 @@ Fase 4: autenticação e autorização
 2.  Configurar o MS
     2.1.    Colocar a anotação de cliente do eureka na application @EnableEurekaClient
     2.2.    Configurar o arquivo application.properties, definindo nome do MS, Porta aleatória, end. do servidor eureka
+3.  Implementando o FeignClient para hr-oauth acessar hr-user
+    3.1.    Adicionar a dependência do FeignClient no pom.xml
+    3.2.    Em Application, adicionar a anotação @EnableFeignClients
+    3.3.    Criar as entidades Role e User de forma padrão e sem anotações JPA
+        3.3.1.  As entidades foram criadas pois hr-oauth será um cliente de hr-user (que originalmente criou estas entidades)
+                e como eu precisarei recuperar estas informações necessito ter as mesmas entidades aqui. O mesmo foi feito
+                entre hr-payroll (client) e hr-worker
+    3.4.    Criar a interface UserFeignClient. É esta interface que fará a comunicação entre o meu hr-oauth e hr-user
+        3.4.1.  Colocar as anotações @Component e @FeignClient(name = "hr-user",path = "/users")
+        3.4.2.  Copiar a assinatura do método que eu quero acessar em hr-user
+    3.5.    Criar uma comunicação entre o hr-oauth e hr-user. Uma vez que eu já tenho a interface UserFeignClient eu já
+            tenho "mapeada" a comunicação entre os MS's. Porém para que eu possa efetivamente comunicá-los eu preciso criar
+            um service que irá injetar a dependência desta interface e executar o método
+        3.5.1.  Criar o service UserService e anotar com @Service
+        3.5.2.  Implementar o método que irá executar o método criado na interface
+    3.6.    Criar a resource(controller), anotar com @RestController e @RequestMapping
+        3.6.1.  Injetar o service UserService
+        3.6.2.  Criar o endpoint /search, que basicamente irá chamar o meu service e pesquisa pelo email
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
