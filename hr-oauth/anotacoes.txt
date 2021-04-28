@@ -24,6 +24,47 @@ Fase 4: autenticação e autorização
     3.6.    Criar a resource(controller), anotar com @RestController e @RequestMapping
         3.6.1.  Injetar o service UserService
         3.6.2.  Criar o endpoint /search, que basicamente irá chamar o meu service e pesquisa pelo email
+4.  Implementando o JWT
+    4.1.    Para que o JWT funcione no Zuul é necessário implentar uma configuração no arquivo application.properties
+            Ex.: zuul.routes.oauth.sensitive-headers=Cookie,Set-Cookie
+    4.2.    Adicionar a extensão spring-cloud-starter-oauth2 ao pom.xml
+    4.3.    Criar uma package config e dentro desta 3 classes: AppConfig, AuthorizationServerConfig e SecurityConfig
+        4.3.1.  Criar a classe de configuração AppConfig. Esta classe será responsável por criar os Beans: BCryptPasswordEncoder,
+                JwtAccessTokenConverter e JwtTokenStore
+                IMPORTANTE! Isto é feito para que eu possa injetar estas bibliotecas em outras classes
+            4.3.1.1.    Anotar a classe com @Configuration, para que o Spring Boot escaneie a classe
+            4.3.1.2.    Criar os métodos Beans, implementação padrão!
+        4.3.2.  Criar a classe AuthorizationServerConfig, que é a classe que irá determinar que o nosso MS hr-oauth é um
+                Authorization Server, por isso vamos usar @EnableAuthorizationServer
+            4.3.2.1.    Adicionar as anotações: @Configuration, @EnableAuthorizationServer
+            4.3.2.2.    Extender a classe AuthorizationServerConfigurerAdapter e implementar os métodos configure
+            4.3.2.3.    Injetar as dependências criadas em AppConfig e também AuthenticationManager
+                        Ex.:
+                        @Autowired
+                        private BCryptPasswordEncoder passwordEncoder;
+                        @Autowired
+                        private JwtAccessTokenConverter accessTokenConverter;
+                        @Autowired
+                        private JwtTokenStore tokenStore;
+                        @Autowired
+                        private AuthenticationManager authenticationManager;
+        4.3.3.  Criar a classe SecurityConfig, que irá implementar o Spring Security
+            4.3.3.1.    Anotar a classe como @Configuration e extender WebSecurityConfigurerAdapter
+            4.3.3.2.    Implementar o método configure
+            4.3.3.3.    Injetar as dependências
+    4.4.    Atualizar a entidade User implementando UserDetails
+        4.4.1.  Implementar todos métodos de UserDetails
+            4.4.1.1.    IMPORTANTE! Aqui não foram implementadas lógicas, por isso os métodos ficaram retornando true
+    4.5.    Adicionar a implementação de UserDetailsService em UserService
+        4.5.1.  Implementar o método loadUserByUsername
+
+
+
+
+
+
+
+
 
 
 

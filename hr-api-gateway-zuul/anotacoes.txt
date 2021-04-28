@@ -23,7 +23,9 @@ Fase 2: Eureka, Hystrix, Zuul
             específico. Ou seja, as configurações de timeout precisam estar tanto no Zuul quanto nos MS
 3.  Implementando o FeignClient para hr-oauth acessar hr-user
     3.1.    No gateway zuul, em application.properties, definir as rotas para que seja possível acessar o MS através do Zuul
-
+4.  Implementando o JWT
+    4.1.    Para que o JWT funcione no Zuul é necessário implentar uma configuração no arquivo application.properties
+            Ex.: zuul.routes.oauth.sensitive-headers=Cookie,Set-Cookie
 
 
 
