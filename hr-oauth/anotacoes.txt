@@ -57,6 +57,22 @@ Fase 4: autenticação e autorização
             4.4.1.1.    IMPORTANTE! Aqui não foram implementadas lógicas, por isso os métodos ficaram retornando true
     4.5.    Adicionar a implementação de UserDetailsService em UserService
         4.5.1.  Implementar o método loadUserByUsername
+5.  Levando as configurações de segurança para o Config Server
+    5.1.    O meu MS hr-oauth precisa ser cliente do Config Server. Adicionar dependências ao pom.xml
+    5.2.    Em seguida, configurar o meu arquivo AppConfig para que ele recupere os valores do Config Server
+        5.2.1.  Adicionar uma variável para receber a senha do Config Server, interpolando usando @Value
+        5.2.2.  Passar a variável ao setSigningKey()
+    5.3.    Criar o arquivo bootstrap.properties, para apontar para o servidor de configuração. Qualquer projeto que seja
+            cliente do servidor de configuração necessita deste arquivo
+    5.4.    Alterar a classe AuthorizationServerConfig, para remover os hard-codes de credenciais da aplicação
+        5.4.1.  Criar as variáveis que receberão as credenciais do repositório
+    5.5.    Criar o arquivo de configuração dentro do meu respositório git https://github.com/lhserafim/ms-course-configs/tree/master
+        5.5.1.  Criar o arquivo application.properties. Foi criado com este nome porque ele pode ser usado por qualquer
+                ms do meu sistema. Ou seja é uma configuração do sistema
+                Ex.:
+                oauth.client.name=myappname123
+                oauth.client.secret=myappsecret123
+                jwt.secret=MY-JWT-SECRET
 
 
 

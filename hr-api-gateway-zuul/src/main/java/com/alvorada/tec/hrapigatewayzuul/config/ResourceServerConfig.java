@@ -19,7 +19,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     // As 3 constantes abaixo foram criadas p/ evitar poluição no meu método HttpSecurity
     private static final String[] PUBLIC = { "/hr-oauth/oauth/token" }; // Rotas que serão publicas e liberadas
     private static final String[] OPERATOR = { "/hr-worker/**" }; // Rotas que apenas roles específicas terão acesso
-    private static final String[] ADMIN = { "/hr-payroll/**", "/hr-user/**" };
+    private static final String[] ADMIN = { "/hr-payroll/**", "/hr-user/**", "/actuator/**", "/hr-worker/actuator/**", "/hr-oauth/actuator/**" };
 
     @Override // Configurar este método para ler o token
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {

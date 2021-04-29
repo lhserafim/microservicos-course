@@ -1,6 +1,7 @@
 package com.alvorada.tec.hroauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,6 +16,12 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+    @Value("${oauth.client.name}")
+    private String clientName;
+
+    @Value("${oauth.client.secret}")
+    private String clientSecret;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -36,8 +43,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients.inMemory() // Para dizer que a validação acontece em memória
-                .withClient("myappname123") // credencial do meu app que será validado
-                .secret(passwordEncoder.encode("myappsecret123")) // senha do meu app
+                //.withClient("myappname123") // credencial do meu app que será validado
+                //.secret(passwordEncoder.encode("myappsecret123")) // senha do meu app
+                .withClient(clientName)
+                .secret(passwordEncoder.encode(clientSecret))
                 .scopes("read", "write")
                 .authorizedGrantTypes("password") // tipo de privilégio
                 .accessTokenValiditySeconds(86400); // tempo p/ expiração (24 horas)

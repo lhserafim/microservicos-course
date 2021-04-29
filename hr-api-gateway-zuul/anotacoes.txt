@@ -35,6 +35,24 @@ Fase 2: Eureka, Hystrix, Zuul
         5.3.2.  Injetar o token JwtTokenStore
         5.3.3.  Implementar os 2 métodos configure
         DICA! Usar constantes no antMatchers() ao invés de colocar os paths diretamente
+6.  Levando as configurações de segurança para o Config Server
+    6.1.    O meu Zuul precisa ser cliente do Config Server. Adicionar dependências ao pom.xml
+    6.2.    Em seguida, configurar o meu arquivo AppConfig para que ele recupere os valores do Config Server
+        6.2.1.  Adicionar a anotação: @RefreshScope (do actuator), para que seja possível atualizar as configurações mesmo com o Zuul
+                online
+        6.2.2.  Adicionar uma variável para receber a senha do Config Server, interpolando usando @Value
+        6.2.3.  Passar a variável ao setSigningKey()
+    6.3.    Para que o @RefreshScope funcione, necessário adicionar os paths do actuator no ResourceServerConfig
+    6.4.    Criar o arquivo bootstrap.properties, para apontar para o servidor de configuração. Qualquer projeto que seja
+            cliente do servidor de configuração necessita deste arquivo
+    6.5.    Criar o arquivo de configuração dentro do meu respositório git https://github.com/lhserafim/ms-course-configs/tree/master
+        6.5.1.  Criar o arquivo application.properties. Foi criado com este nome porque ele pode ser usado por qualquer
+                ms do meu sistema. Ou seja é uma configuração do sistema
+                Ex.:
+                oauth.client.name=myappname123
+                oauth.client.secret=myappsecret123
+                jwt.secret=MY-JWT-SECRET
+
 
 
 
