@@ -2,7 +2,6 @@ package com.alvorada.tec.hrworker.resources;
 
 import com.alvorada.tec.hrworker.entities.Worker;
 import com.alvorada.tec.hrworker.repositories.WorkerRepository;
-import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +30,7 @@ public class WorkerResource {
 
     // Instanciar o logger para imprimir coisas no log
     private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
+
     @Autowired
     private Environment environment;
     // Este objeto (Enviroment) tem várias informações do contexto da aplicação.
