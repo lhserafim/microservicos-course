@@ -26,7 +26,15 @@ Fase 2: Eureka, Hystrix, Zuul
 4.  Implementando o JWT
     4.1.    Para que o JWT funcione no Zuul é necessário implentar uma configuração no arquivo application.properties
             Ex.: zuul.routes.oauth.sensitive-headers=Cookie,Set-Cookie
-
+5.  Implementando o RESOURCE SERVER. Este papel é desenvolvido pelo Zuul
+    5.1.    Adicionar a extensão do spring-cloud-starter-oauth2
+    5.2.    O Zuul vai precisar decriptografar o token JWT, por isso será necessário criar o mesmo AppConfig que foi criado
+            no MS hr-oauth, para que tenhamos os BEANs carregados no container do Spring Boot
+    5.3.    Criar a classe ResourceServerConfig, pois o Zuul é o nosso Resource Server
+        5.3.1.  Colocar as anotações @ResourceServerConfig e @Configuration e extender ResourceServerConfigurerAdapter
+        5.3.2.  Injetar o token JwtTokenStore
+        5.3.3.  Implementar os 2 métodos configure
+        DICA! Usar constantes no antMatchers() ao invés de colocar os paths diretamente
 
 
 

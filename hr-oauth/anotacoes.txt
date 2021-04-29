@@ -24,7 +24,7 @@ Fase 4: autenticação e autorização
     3.6.    Criar a resource(controller), anotar com @RestController e @RequestMapping
         3.6.1.  Injetar o service UserService
         3.6.2.  Criar o endpoint /search, que basicamente irá chamar o meu service e pesquisa pelo email
-4.  Implementando o JWT
+4.  Implementando o JWT - O MS hr-oauth é meu AUTHORIZATION SERVER
     4.1.    Para que o JWT funcione no Zuul é necessário implentar uma configuração no arquivo application.properties
             Ex.: zuul.routes.oauth.sensitive-headers=Cookie,Set-Cookie
     4.2.    Adicionar a extensão spring-cloud-starter-oauth2 ao pom.xml
